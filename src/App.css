@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700&family=Lato:ital,wght@0,100;0,300;0,700;1,100;1,400&display=swap');
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Kumbh Sans', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #89609e;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  background-color: #735185;
+  padding: 6px;
 }
 
-.App-link {
-  color: #61dafb;
+.header__nav {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header__nav__item h5 {
+  font-size: 18px;
 }
+
+.header__nav__item {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.header__nav__item:hover {
+  background-color: #8f739d;
+}
+
+.header__nav__item i {
+  font-size: 24px;
+}
+
+.header__nav__btn {
+  margin-left: 16px;
+}
+
+.header__nav__btn button {
+  padding: 8px 12px;
+  background-color: #8f739d;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.header__nav__btn button:hover {
+  background-color: #9d85a9;
+}
+
+.header__box {
+  display: flex;
+  align-items: center;
+}
+
+.header__box__item {
+  color: #fff;
+  padding: 7px;
+  border-radius: 4px;
+}
+
+.header__box__item:hover {
+  background-color: #8f739d;
+}
+
+.header__box__item i {
+  font-size: 21px;
+}
+.header__box__item-search input {
+  padding: 8px 44px;
+  background-color: #8f739d;
+  border-radius: 4px;
+  color: #fff;
+  outline: none;
+  font-size: 18px; 
+  cursor: default;
+  border: 0.1px solid #fff;
+}
+
+.header__box__item-search {
+  position: relative;
+  margin-right: 6px;
+}
+
+.header__box__item-search i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  color: #fff;
+}
+
+.header__box__item__avatar {
+  background-color: rgb(9, 151, 104);
+  padding: 6px 8px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
