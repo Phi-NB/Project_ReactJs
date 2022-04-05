@@ -1,27 +1,29 @@
-import {DISPLAY, ADD_ITEM} from '../action-name'
+import { RENDER_ITEM, DELETE_ITEM, ADD_ITEM, UPDATE_ITEM } from '../action-name'
 
 const initialState = 
 {
     listTodo: [],
     title: 'Todo',
-    displayInput: false,
-    displayBtn: true,
-    
 }
 
 
 const reducer = (state = initialState, action) => {
     const newState = {...state}
+    const payload = action.payload
     switch (action.type) {
-        case DISPLAY:
-            newState.displayInput = true
-            newState.displayBtn = false
+        case RENDER_ITEM:
+            newState.listTodo = payload.item
             return newState
         case ADD_ITEM:
-            newState.displayInput = false
-            newState.displayBtn = true
+            newState.listTodo.push(payload.item)
             return newState
 
+        case DELETE_ITEM:
+            newState.listTodo.splice(payload.index, 1)
+            return newState
+        case UPDATE_ITEM:
+            newState.listTodo[payload.index] = payload.item
+            return newState
         default:
             return {...state, ...action.payload}
     }

@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700&family=Lato:ital,wght@0,100;0,300;0,700;1,100;1,400&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700&family=Lato:ital,wght@0,100;0,300;0,700;1,100;1,400&display=swap");
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
 }
 
 body {
@@ -90,7 +89,7 @@ body {
   border-radius: 4px;
   color: #fff;
   outline: none;
-  font-size: 18px; 
+  font-size: 18px;
   cursor: default;
   border: 0.1px solid #fff;
 }
@@ -115,4 +114,188 @@ body {
   border-radius: 100%;
   cursor: pointer;
 }
+
+.login {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px 14px;
+  width: 320px;
+}
+
+.login h1 {
+  text-align: center;
+  font-size: 28px;
+}
+
+.login .form_control {
+  margin: 30px 0;
+}
+.login .form_control input {
+  padding: 10px 6px;
+  width: 100%;
+  border: 1px solid #3a3a3a;
+  outline: none;
+}
+.login .form_control {
+  margin: 30px 0;
+}
+
+.message_erro {
+  color: #cf131f;
+  padding: 6px 0;
+}
+
+.login button {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  background-color: #89609e;
+  color: #fff;
+}
+
+.loading {
+  display: flex;
+  width: 4.5em;
+  height: 4.5em;
+  border: 6px solid transparent;
+  border-top-color: #662997;
+  border-bottom-color: #662997;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  position: relative;
+  top: 44%;
+  left: 48%;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+}
+
+.loading:before {
+  content: "";
+  display: block;
+  margin: auto;
+  width: 0.75em;
+  height: 0.75em;
+  border: 6px solid #662997;
+  border-radius: 50%;
+  animation: pulse 1s alternate ease-in-out infinite;
+}
+
+.form-navigate {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.form-navigate__register {
+  margin-left: 6px;
+  color: #735185;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.todo__container {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 20px;
+}
+
+.todo_container__title {
+  text-align: center;
+}
+
+.todo__container__list-todo {
+  margin: 8px 0;
+  position: relative;
+}
+
+.group_update button,
+.todo__container__btn-add button,
+.todo__container__input__add-item {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #735185;
+  border: none;
+  color: #fff;
+}
+
+.todo__container__input input, .group_update input {
+  width: 100%;
+  padding: 8px 6px;
+  border-radius: 4px;
+  border: 1px solid #9d85a9;
+  outline: none;
+  margin-bottom: 6px;
+}
+
+.todo__container__list-todo__item {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  background-color: #f0efef;
+  border-radius: 2px;
+  padding: 4px 6px;
+}
+
+.todo__container__list-todo__item p {
+  max-height: 3.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.6rem;
+  max-width: 70%;
+}
+
+.todo__container__list-todo__item:hover .groupBtn{
+  display: block;
+}
+
+.groupBtn {
+  display: none;
+}
+
+.groupBtn button{
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  padding: 0 6px;
+}
+
+/* .group_update {
+}
+.group_update input{
+  width: 100%;
+} */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 

@@ -1,3 +1,5 @@
-export const DISPLAY = 'ADD';
 export const ADD_ITEM = 'ADD_ITEM'
+export const DELETE_ITEM = 'DELETE_ITEM'
 export const LOGIN = 'LOGIN'
+export const RENDER_ITEM = 'RENDER_ITEM'
+export const UPDATE_ITEM = 'UPDATE_ITEM'

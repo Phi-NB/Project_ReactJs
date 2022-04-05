@@ -1,6 +1,5 @@
-import React from "react";
-import login from "../../services/user";
-import { useEffect, useState } from "react";
+import { register } from "../../services/user";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import actionCreator from "../../redux/action";
@@ -17,33 +16,29 @@ function Login() {
       setLoading(true);
     }, 2000);
   }, [setLoading]);
+
   const DisplayingErrorMessagesSchema = Yup.object().shape({
     username: Yup.string()
       .min(2, "Username length 2-20")
-      .max(20, "Username length 2-20")
+      .max(50, "Username length 2-20")
       .required("Required"),
     password: Yup.string()
       .min(2, "Password length 2-20")
       .max(20, "Password length 2-20")
       .required("Required"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"
+    ),
   });
-  const submitLogin = async (data) => {
-    const result = await login(data.username, data.password);
-    console.log(result);
+  const submitRegister = async (data) => {
+    console.log(data);
+    const result = await register(data.username, data.password);
     dispatch(actionCreator.loginAction(result.token));
-    localStorage.setItem("authToken", result.token);
-    if (result.token !== "") {
-      navigate("/home");
-    }
-    // try {
-
-    // } catch (error) {
-    //   alert(error.message);
-    // }
   };
 
-  const navigateRegister = () => {
-    navigate("/register");
+  const navigateLogin = () => {
+    navigate("/login")
   }
 
   return (
@@ -52,14 +47,14 @@ function Login() {
         <Loading />
       ) : (
         <div className="login">
-          <h1>Login</h1>
+          <h1>Register</h1>
           <Formik
             validationSchema={DisplayingErrorMessagesSchema}
             initialValues={{
               username: "",
               password: "",
             }}
-            onSubmit={submitLogin}
+            onSubmit={submitRegister}
           >
             {({ errors, touched }) => (
               <Form>
@@ -81,10 +76,21 @@ function Login() {
                     <div className="message_erro">{errors.password}</div>
                   )}
                 </div>
+                <div className="form_control">
+                  <p>Confirm Password</p>
+                  <Field
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                  />
+                  {touched.confirmPassword && errors.confirmPassword && (
+                    <div className="message_erro">{errors.confirmPassword}</div>
+                  )}
+                </div>
                 <button type="submit">Submit</button>
                 <div className="form-navigate">
-                  <span>Do not have an account?</span>
-                  <span onClick={navigateRegister} className="form-navigate__register">Register</span>
+                  <span>Do have an account?</span>
+                  <span onClick={navigateLogin} className="form-navigate__register">Login</span>
                 </div>
               </Form>
             )}

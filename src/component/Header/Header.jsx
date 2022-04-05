@@ -1,6 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 
 function Header() {
+
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
   return (
     <header className="header">
       <div className="header__nav">
@@ -32,21 +41,26 @@ function Header() {
         </div>
       </div>
       <div className="header__box">
-          <div className="header__box__item-search">
-              <input type="text" />
-              <i className='bx bx-search'></i>
+        <div className="header__box__item-search">
+          <input type="text" />
+          <i className="bx bx-search"></i>
+        </div>
+        <div className="header__box__item">
+          <i className="bx bx-info-circle"></i>
+        </div>
+        <div className="header__box__item">
+          <i className="bx bx-bell"></i>
+        </div>
+        <div className="header__box__item">
+          <div className="header__box__item__avatar">
+            <p>PN</p>
           </div>
-          <div className="header__box__item">
-            <i className='bx bx-info-circle' ></i>
-          </div>
-          <div className="header__box__item">
-            <i className='bx bx-bell'></i>
-          </div>
-          <div className="header__box__item">
-            <div className="header__box__item__avatar">
-                <p>PN</p>
-            </div>
-          </div>
+        </div>
+        <div className="header__box__item header__nav__btn">
+          <button className="" onClick={logout}>
+            Logout
+          </button>
+        </div>
       </div>
     </header>
   );
