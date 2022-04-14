@@ -213,6 +213,8 @@ button {
   border-radius: 6px;
   padding: 10px 14px;
   margin: 20px;
+  position: relative;
+  z-index: 5;
 }
 
 .todo_container__title {
@@ -235,6 +237,15 @@ button {
   color: #fff;
 }
 
+.todo__container__group-add {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__container__group-add button {
+  width: 30%;
+}
+
 .todo__container__input input, .group_update input {
   width: 100%;
   padding: 8px 6px;
@@ -251,6 +262,7 @@ button {
   background-color: #f0efef;
   border-radius: 2px;
   padding: 4px 6px;
+  cursor: pointer;
 }
 
 .todo__container__list-todo__item p {
@@ -277,25 +289,13 @@ button {
   padding: 0 6px;
 }
 
-/* .group_update {
+.list-todo {
+  display: flex;
+  align-items: flex-start;
 }
-.group_update input{
-  width: 100%;
-} */
 
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
-
-@keyframes pulse {
-  from {
-    transform: scale(0.5);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-

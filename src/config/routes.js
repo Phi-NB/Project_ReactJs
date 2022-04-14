@@ -8,7 +8,6 @@ import actionCreator from "../redux/action";
 
 function PrivateRoute({ children }) {
   const userSelector = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +43,9 @@ const routeConfig = [
   },
 
   {
-    component: <Register />,
+    component: (
+        <Register />
+    ),
     path: "/register",
   },
 ];

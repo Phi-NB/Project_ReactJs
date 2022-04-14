@@ -1,7 +1,7 @@
 const url = "https://todo-nodemy.herokuapp.com/tasks";
 
-const getDataTodo = (token) => {
-  return fetch(url, {
+const getDataTodo = (token, status) => {
+  return fetch(url + '?status='+ status, {
     headers: {
       "Content-Type": "application/json",
       'Authorization': "Bearer " + token,
@@ -10,7 +10,7 @@ const getDataTodo = (token) => {
   }).then((resp) => resp.json());
 };
 
-export const postDataTodo = (token, title) => {
+export const postDataTodo = (token, title, status) => {
   return fetch(url, {
     method: "POST",
     headers: {
@@ -19,7 +19,7 @@ export const postDataTodo = (token, title) => {
     },
     body: JSON.stringify({
       title: title,
-      status: "todo",
+      status: status,
     }),
   }).then((resp) => resp.json());
 };

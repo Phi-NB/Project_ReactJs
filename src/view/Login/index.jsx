@@ -35,11 +35,6 @@ function Login() {
     if (result.token !== "") {
       navigate("/home");
     }
-    // try {
-
-    // } catch (error) {
-    //   alert(error.message);
-    // }
   };
 
   const navigateRegister = () => {

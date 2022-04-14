@@ -1,13 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import actionCreator from "../../redux/action";
 
 function Header() {
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
+    dispatch(actionCreator.loginAction(''));
   };
 
   return (
