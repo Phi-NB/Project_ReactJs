@@ -32,6 +32,10 @@ const routeConfig = [
     component: <Login />,
     path: "/login",
   },
+  {
+    component: <Login />,
+    path: "/",
+  },
 
   {
     component: (

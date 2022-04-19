@@ -8,6 +8,7 @@ import {
   deleteDataTodo,
   updateDataTodo,
 } from "../../services/todo";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 
 function Todo(props) {
   const todoSelector = useSelector((state) => {
@@ -26,14 +27,22 @@ function Todo(props) {
     index: 0,
   });
   const [listTodo, setListTodo] = useState([]);
+  // useEffect(() => {
+  //   const listTodo = async () => {
+  //     const result = await getDataTodo(todoSelector.user.token, props.status);
+  //     // dispatch(actionCreator.renderItem(result, props.status));
+  //     setListTodo(result);
+  //   };
+  //   listTodo();
+  // }, [todoSelector.user.token, dispatch, props.status]);
+  // console.log(props.items);
   useEffect(() => {
     const listTodo = async () => {
-      const result = await getDataTodo(todoSelector.user.token, props.status);
-      // dispatch(actionCreator.renderItem(result, props.status));
-      setListTodo(result);
+      setListTodo(props.items);
     };
     listTodo();
-  }, [todoSelector.user.token, dispatch, props.status]);
+  }, [props.items]);
+
 
   const removeItem = (id, title, status, index) => {
     const newListTodo = [...listTodo];
@@ -100,70 +109,74 @@ function Todo(props) {
     setDisplayBtnAdd(true);
   };
 
-  const [draggedItem, setDraggedItem] = useState();
-  const [draggedOverItem, setDraggedOverItem] = useState();
 
-  const onDragStart = (e, index) => {
-    setDraggedItem(listTodo[index]);
-    // e.dataTransfer.effectAllowed = "move";
-    // e.dataTransfer.setData("text/html", e.target.parentNode);
-    // e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
-  };
-
-  const onDragOver = (index) => {
-    setDraggedOverItem(listTodo[index]);
-
-    if (draggedItem === draggedOverItem) {
-      return;
-    }
-
-    // filter out the currently dragged item
-    let items = listTodo.filter((item) => item !== draggedItem);
-
-    // add the dragged item after the dragged over item
-    items.splice(index, 0, draggedItem);
-
-    setListTodo(items);
-  };
-
+  
   return (
     <div className="todo__container">
       <div className="todo_container__title">
         <h2>{props.title}</h2>
       </div>
-      <div className="todo__container__list-todo">
-        {listTodo.map((todo, index) => {
+      <Droppable droppableId={props.droppableId} key={props.droppableId}>
+        {(provided) => {
           return (
-            <div
-              key={index}
-              className="todo__container__list-todo__item"
-              draggable
-              onDragStart={(e) => onDragStart(e, index)}
-              onDragOver={(e) => onDragOver(index)}
-            >
-              <p>{todo.title}</p>
-              <div className="groupBtn">
-                <button onClick={() => updateItem(todo, index)}>
-                  <i className="bx bx-pencil"></i>
-                </button>
-                <button
-                  onClick={() =>
-                    removeItem(todo._id, todo.title, todo.status, index)
-                  }
-                >
-                  <i className="bx bx-x"></i>
-                </button>
-              </div>
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {listTodo.map((todo, index) => {
+                return (
+                  <Draggable key={index} draggableId={index} index={index}>
+                    {(provided) => {
+                      return (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="todo__container__list-todo__item"
+                        >
+                          <p>{todo?.title}</p>
+                          <div className="groupBtn">
+                            <button onClick={() => updateItem(todo, index)}>
+                              <i className="bx bx-pencil"></i>
+                            </button>
+                            <button
+                              onClick={() =>
+                                removeItem(
+                                  todo._id,
+                                  todo.title,
+                                  todo.status,
+                                  index
+                                )
+                              }
+                            >
+                              <i className="bx bx-x"></i>
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    }}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
             </div>
           );
-        })}
-      </div>
+        }}
+      </Droppable>
+
       {displayGroupUpdate && (
         <div className="group_update">
           <input type="text" onChange={(e) => setInputUpdate(e.target.value)} />
           <div className="todo__container__group-add">
-            <button className="todo__container__input__add-item" onClick={update}>update</button>
-            <button className="todo__container__input__add-item" onClick={closeUpdate}>close</button>
+            <button
+              className="todo__container__input__add-item"
+              onClick={update}
+            >
+              update
+            </button>
+            <button
+              className="todo__container__input__add-item"
+              onClick={closeUpdate}
+            >
+              close
+            </button>
           </div>
         </div>
       )}
