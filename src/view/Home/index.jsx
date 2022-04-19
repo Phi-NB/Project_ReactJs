@@ -86,30 +86,30 @@ function Home() {
     
   }
 
-  useEffect(() => {
-    const listTodo = async () => {
-      const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[0][1].status);
-      // dispatch(actionCreator.renderItem(result, props.status));
-      Object.entries(taskStatus)[0][1].items = result
-    };
-    listTodo();
-  })
-  useEffect(() => {
-    const listTodo = async () => {
-      const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[1][1].status);
-      // dispatch(actionCreator.renderItem(result, props.status));
-      Object.entries(taskStatus)[1][1].items  = result
-    };
-    listTodo();
-  })
-  useEffect(() => {
-    const listTodo = async () => {
-      const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[2][1].status);
-      // dispatch(actionCreator.renderItem(result, props.status));
-      Object.entries(taskStatus)[2][1].items  = result
-    };
-    listTodo();
-  })
+  // useEffect(() => {
+  //   const listTodo = async () => {
+  //     const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[0][1].status);
+  //     // dispatch(actionCreator.renderItem(result, props.status));
+  //     Object.entries(taskStatus)[0][1].items = result
+  //   };
+  //   listTodo();
+  // })
+  // useEffect(() => {
+  //   const listTodo = async () => {
+  //     const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[1][1].status);
+  //     // dispatch(actionCreator.renderItem(result, props.status));
+  //     Object.entries(taskStatus)[1][1].items  = result
+  //   };
+  //   listTodo();
+  // })
+  // useEffect(() => {
+  //   const listTodo = async () => {
+  //     const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[2][1].status);
+  //     // dispatch(actionCreator.renderItem(result, props.status));
+  //     Object.entries(taskStatus)[2][1].items  = result
+  //   };
+  //   listTodo();
+  // })
 
   const [columns, setColumns] = useState(taskStatus);
   return (

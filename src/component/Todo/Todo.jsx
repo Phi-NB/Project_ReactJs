@@ -27,15 +27,14 @@ function Todo(props) {
     index: 0,
   });
   const [listTodo, setListTodo] = useState([]);
-  // useEffect(() => {
-  //   const listTodo = async () => {
-  //     const result = await getDataTodo(todoSelector.user.token, props.status);
-  //     // dispatch(actionCreator.renderItem(result, props.status));
-  //     setListTodo(result);
-  //   };
-  //   listTodo();
-  // }, [todoSelector.user.token, dispatch, props.status]);
-  // console.log(props.items);
+  useEffect(() => {
+    const listTodo = async () => {
+      const result = await getDataTodo(todoSelector.user.token, props.status);
+      // dispatch(actionCreator.renderItem(result, props.status));
+      setListTodo(result);
+    };
+    listTodo();
+  }, [todoSelector.user.token, dispatch, props.status]);
   useEffect(() => {
     const listTodo = async () => {
       setListTodo(props.items);
