@@ -27,21 +27,20 @@ function Todo(props) {
     index: 0,
   });
   const [listTodo, setListTodo] = useState([]);
-  useEffect(() => {
-    const listTodo = async () => {
-      const result = await getDataTodo(todoSelector.user.token, props.status);
-      // dispatch(actionCreator.renderItem(result, props.status));
-      setListTodo(result);
-    };
-    listTodo();
-  }, [todoSelector.user.token, dispatch, props.status]);
+  // useEffect(() => {
+  //   const listTodo = async () => {
+  //     const result = await getDataTodo(todoSelector.user.token, props.status);
+  //     // dispatch(actionCreator.renderItem(result, props.status));
+  //     setListTodo(result);
+  //   };
+  //   listTodo();
+  // }, [todoSelector.user.token, dispatch, props.status]);
   useEffect(() => {
     const listTodo = async () => {
       setListTodo(props.items);
     };
     listTodo();
   }, [props.items]);
-
 
   const removeItem = (id, title, status, index) => {
     const newListTodo = [...listTodo];
@@ -108,8 +107,6 @@ function Todo(props) {
     setDisplayBtnAdd(true);
   };
 
-
-  
   return (
     <div className="todo__container">
       <div className="todo_container__title">
@@ -121,7 +118,11 @@ function Todo(props) {
             <div {...provided.droppableProps} ref={provided.innerRef}>
               {listTodo.map((todo, index) => {
                 return (
-                  <Draggable key={index} draggableId={index} index={index}>
+                  <Draggable
+                    key={todo._id}
+                    draggableId={todo._id}
+                    index={index}
+                  >
                     {(provided) => {
                       return (
                         <div

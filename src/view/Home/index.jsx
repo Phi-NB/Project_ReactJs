@@ -12,7 +12,31 @@ import {
   updateDataTodo,
 } from "../../services/todo";
 
+const TODO = 'toDo'
+const INPROGRESS = 'in_progress'
+const DONE = 'done'
+
+const taskStatus = {
+  [TODO]: {
+    name: "To do",
+    items: [],
+    status: 'todo'
+  },
+  [INPROGRESS]: {
+    name: "In Progress",
+    items: [],
+    status: 'in_progress'
+  },
+  [DONE]: {
+    name: "Done",
+    items: [],
+    status: 'done'
+  }
+};
+
 function Home() {
+
+  
   const [loading, setLoading] = useState(false);
   const todoSelector = useSelector((state) => {
     return state;
@@ -26,6 +50,7 @@ function Home() {
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
+    console.log(result);
     const { source, destination } = result;
   
     if (source.droppableId !== destination.droppableId) {
@@ -61,55 +86,28 @@ function Home() {
     }
   };
 
-  const taskStatus = {
-    toDo: {
-      name: "To do",
-      items: [],
-      status: 'todo'
-    },
-    inProgress: {
-      name: "In Progress",
-      items: [],
-      status: 'in_progress'
-    },
-    done: {
-      name: "Done",
-      items: [],
-      status: 'done'
-    }
-  };
 
-  // console.log(Object.entries(taskStatus)[2][1].items);
-
-
-  const getdata = () => {
-    
-  }
-
-  // useEffect(() => {
-  //   const listTodo = async () => {
-  //     const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[0][1].status);
-  //     // dispatch(actionCreator.renderItem(result, props.status));
-  //     Object.entries(taskStatus)[0][1].items = result
-  //   };
-  //   listTodo();
-  // })
-  // useEffect(() => {
-  //   const listTodo = async () => {
-  //     const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[1][1].status);
-  //     // dispatch(actionCreator.renderItem(result, props.status));
-  //     Object.entries(taskStatus)[1][1].items  = result
-  //   };
-  //   listTodo();
-  // })
-  // useEffect(() => {
-  //   const listTodo = async () => {
-  //     const result = await getDataTodo(todoSelector.user.token, Object.entries(taskStatus)[2][1].status);
-  //     // dispatch(actionCreator.renderItem(result, props.status));
-  //     Object.entries(taskStatus)[2][1].items  = result
-  //   };
-  //   listTodo();
-  // })
+  useEffect(() => {
+    const listTodo = async () => {
+      const result = await getDataTodo(todoSelector.user.token, taskStatus[TODO].status);
+      taskStatus[TODO].items = result
+    };
+    listTodo();
+  })
+  useEffect(() => {
+    const listTodo = async () => {
+      const result = await getDataTodo(todoSelector.user.token, taskStatus[INPROGRESS].status);
+      taskStatus[INPROGRESS].items  = result
+    };
+    listTodo();
+  })
+  useEffect(() => {
+    const listTodo = async () => {
+      const result = await getDataTodo(todoSelector.user.token, taskStatus[DONE].status);
+      taskStatus[DONE].items  = result
+    };
+    listTodo();
+  })
 
   const [columns, setColumns] = useState(taskStatus);
   return (
