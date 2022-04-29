@@ -1,8 +1,8 @@
 import React from "react";
-import actionCreator from "../../redux/action";
+// import actionCreator from "../../redux/action";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import getDataTodo from "../../services/todo";
+import { useSelector } from "react-redux";
+// import getDataTodo from "../../services/todo";
 import {
   postDataTodo,
   deleteDataTodo,
@@ -14,7 +14,7 @@ function Todo(props) {
   const todoSelector = useSelector((state) => {
     return state;
   });
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [input, setInput] = useState();
   const [displayInput, setDisplayedInput] = useState(false);
   const [dislayBtnAdd, setDisplayBtnAdd] = useState(true);

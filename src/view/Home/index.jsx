@@ -6,11 +6,11 @@ import Loading from "../../component/Loading/Loading.jsx";
 import { DragDropContext } from "react-beautiful-dnd";
 import getDataTodo from '../../services/todo'
 import { useSelector } from 'react-redux';
-import {
-  postDataTodo,
-  deleteDataTodo,
-  updateDataTodo,
-} from "../../services/todo";
+// import {
+//   postDataTodo,
+//   deleteDataTodo,
+//   updateDataTodo,
+// } from "../../services/todo";
 
 const TODO = 'toDo'
 const INPROGRESS = 'in_progress'
