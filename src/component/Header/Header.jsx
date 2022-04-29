@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import actionCreator from "../../redux/action";
 
